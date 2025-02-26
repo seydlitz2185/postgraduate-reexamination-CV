@@ -1,0 +1,446 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2015 Jan Küster
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%	
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%	
+%
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+% Modified By Steven Yu 2025
+%
+%============================================================================%
+%
+%	DOCUMENT DEFINITION
+%
+%============================================================================%
+
+%we use article class because we want to fully customize the page and dont use a cv template
+\documentclass[10pt,A4]{article}	
+
+
+%----------------------------------------------------------------------------------------
+%	ENCODING
+%----------------------------------------------------------------------------------------
+
+%we use utf8 since we want to build from any machine
+\usepackage[utf8]{inputenc}		
+\usepackage[UTF8]{ctex}
+%----------------------------------------------------------------------------------------
+%	LOGIC
+%----------------------------------------------------------------------------------------
+
+% provides \isempty test
+\usepackage{xifthen}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+% some tex-live fonts - choose your own
+
+%\usepackage[defaultsans]{droidsans}
+%\usepackage[default]{comfortaa}
+%\usepackage{cmbright}
+\usepackage[default]{lato}
+%\usepackage{fetamont}
+%\usepackage[default]{gillius}
+%\usepackage[light,math]{iwona}
+%\usepackage[thin]{roboto} 
+
+% set font default
+\renewcommand*\familydefault{\sfdefault} 	
+\usepackage[T1]{fontenc}
+
+% more font size definitions
+\usepackage{moresize}		
+
+
+%----------------------------------------------------------------------------------------
+%	PAGE LAYOUT  DEFINITIONS
+%----------------------------------------------------------------------------------------
+
+%debug page outer frames
+%\usepackage{showframe}			
+
+
+%define page styles using geometry
+\usepackage[a4paper]{geometry}		
+
+% for example, change the margins to 2 inches all round
+\geometry{top=1.25cm, bottom=-.6cm, left=1.5cm, right=1.5cm} 	
+
+%use customized header
+\usepackage{fancyhdr}				
+\pagestyle{fancy}
+
+%less space between header and content
+\setlength{\headheight}{-5pt}		
+
+
+%customize entries left, center and right
+%\lhead{}
+%\chead{}
+%\rhead{}
+
+
+%indentation is zero
+\setlength{\parindent}{0mm}
+
+%----------------------------------------------------------------------------------------
+%	TABLE /ARRAY DEFINITIONS
+%---------------------------------------------------------------------------------------- 
+
+%for layouting tables
+\usepackage{multicol}			
+\usepackage{multirow}
+
+%extended aligning of tabular cells
+\usepackage{array}
+
+\newcolumntype{x}[1]{%
+>{\raggedleft\hspace{0pt}}p{#1}}%
+
+
+%----------------------------------------------------------------------------------------
+%	GRAPHICS DEFINITIONS
+%---------------------------------------------------------------------------------------- 
+
+%for header image
+\usepackage{graphicx}
+
+%for floating figures
+\usepackage{wrapfig}
+\usepackage{float}
+%\floatstyle{boxed} 
+%\restylefloat{figure}
+
+%for drawing graphics		
+\usepackage{tikz}				
+\usetikzlibrary{shapes, backgrounds,mindmap, trees}
+
+
+%----------------------------------------------------------------------------------------
+%	Color DEFINITIONS
+%---------------------------------------------------------------------------------------- 
+
+\usepackage{color}
+
+%accent color
+\definecolor{NJAUGREEN}{RGB}{0,82,68}
+
+%dark background color
+\definecolor{bgcol}{RGB}{110,110,110}
+
+%light background / accent color
+\definecolor{softcol}{RGB}{238,219,65}
+
+%NJAUBLEU color
+\definecolor{NJAUBLEU}{RGB}{4,54,144}
+
+
+%============================================================================%
+%
+%
+%	DEFINITIONS
+%
+%
+%============================================================================%
+
+%----------------------------------------------------------------------------------------
+% 	HEADER
+%----------------------------------------------------------------------------------------
+
+% remove top header line
+\renewcommand{\headrulewidth}{0pt} 
+
+%remove botttom header line
+\renewcommand{\footrulewidth}{0pt}	  	
+
+%remove pagenum
+\renewcommand{\thepage}{}	
+
+%remove section num		
+\renewcommand{\thesection}{}			
+
+%----------------------------------------------------------------------------------------
+% 	ARROW GRAPHICS in Tikz
+%----------------------------------------------------------------------------------------
+
+% a six pointed arrow poiting to the left
+\newcommand{\tzlarrow}{(0,0) -- (0.2,0) -- (0.3,0.2) -- (0.2,0.4) -- (0,0.4) -- (0.1,0.2) -- cycle;}	
+
+% include the left arrow into a tikz picture
+% param1: fill color
+%
+\newcommand{\larrow}[1]
+{\begin{tikzpicture}[scale=0.58]
+	 \filldraw[fill=#1!100,draw=#1!100!black]  \tzlarrow
+ \end{tikzpicture}
+}
+
+% a six pointed arrow poiting to the right
+\newcommand{\tzrarrow}{ (0,0.2) -- (0.1,0) -- (0.3,0) -- (0.2,0.2) -- (0.3,0.4) -- (0.1,0.4) -- cycle;}
+
+% include the right arrow into a tikz picture
+% param1: fill color
+%
+\newcommand{\rarrow}
+{\begin{tikzpicture}[scale=0.7]
+	\filldraw[fill=NJAUGREEN!100,draw=NJAUGREEN!100!black] \tzrarrow
+ \end{tikzpicture}
+}
+
+
+\setlength{\headheight}{-5pt}		
+
+
+%customize entries left, center and right
+\lhead{}
+\chead{ \small{ \textbf{Phone:} {\textbf{Your Phone Number }}  \textperiodcentered  \textbf{Email:} {\textbf{youremail@gmail.comn }}\textperiodcentered \textbf{GitHub:} \textcolor{NJAUGREEN}{\textbf{https://github.com/seydlitz2185}} }}
+\rhead{}
+
+
+%indentation is zero
+\setlength{\parindent}{0mm}
+%----------------------------------------------------------------------------------------
+%	custom sections
+%----------------------------------------------------------------------------------------
+
+% create a coloured box with arrow and title as cv section headline
+% param 1: section title
+%
+\newcommand{\cvsection}[1]
+{
+	%\begin{center} Center the secton title
+	\begin{flushleft}
+		\large\textcolor{NJAUGREEN}{\textbf{#1}}
+	\end{flushleft}
+	%\end{center}
+}
+
+%create a coloured arrow with title as cv meta section section
+% param 1: meta section title
+%
+\newcommand{\metasection}[2]
+{
+%\begin{tabular*}{1\textwidth}{r r}
+\footnotesize{#2} \hspace*{\fill} \footnotesize{#1}\\[1pt]
+%\end{tabular*}
+}
+
+%----------------------------------------------------------------------------------------
+%	 CV EVENT
+%----------------------------------------------------------------------------------------
+
+% creates a stretched box as cv entry headline followed by some paragraphs about 
+% the work you did
+% param 1:	event time i.e. 2014 or 2011-2014 etc.
+% param 2:	event name (what did you do?)
+% param 3:	institution (where did you work / study)
+% param 4:	list of paragraphs
+%
+\newcommand{\cvevent}[4]
+{
+
+\begin{tabular*}{1\textwidth}{p{13.6cm}  x{3.9cm}}
+	\textbf{#2} - \textcolor{bgcol}{#3} &   \vspace{2.5pt}\textcolor{NJAUGREEN}{#1}
+\end{tabular*}
+
+\vspace{-8pt}
+\textcolor{softcol}{\hrule}
+\vspace{6pt}
+
+	\foreach \desc in {#4}{
+		$\cdot$ \desc\\[3pt]
+	}
+	
+\vspace{3pt}
+}
+
+% creates a stretched box as 
+\newcommand{\cveventmeta}[2]
+{
+	\mbox{\mystrut \hspace{87pt}\textit{#1}}\\
+	#2
+}
+
+%----------------------------------------------------------------------------------------
+% CUSTOM STRUT FOR EMPTY BOXES
+%----------------------------------------- -----------------------------------------------
+\newcommand{\mystrut}{\rule[-.3\baselineskip]{0pt}{\baselineskip}}
+
+%----------------------------------------------------------------------------------------
+% CUSTOM LOREM IPSUM
+%----------------------------------------------------------------------------------------
+\newcommand{\lorem}
+{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.}
+
+
+
+%============================================================================%
+%
+%
+%
+%	DOCUMENT CONTENT
+%
+%
+%
+%============================================================================%
+\begin{document}
+
+
+%use our custom fancy header definitions
+\pagestyle{fancy}	
+\vspace{2pt}
+\hspace{-0.25\linewidth}{\makebox[1.5\linewidth][c]{\HUGE{\textcolor{NJAUBLEU}{\textbf{姓名}} } \textcolor{NJAUGREEN}{\rule[-1mm]{1mm}{0.9cm}} \HUGE{\textcolor{NJAUBLEU}{\textbf{简历}} } }}
+
+
+%----------------------------------------------------------------------------------------
+%	HEADER IMAGE
+%----------------------------------------------------------------------------------------
+
+%\begin{figure}[H]
+%\begin{flushright}
+%	\includegraphics[trim= 320 130 460 210,clip,width=0.2\linewidth]{myfoto.jpg}	%trimming relative to image size!
+%\end{flushright}
+%\end{figure}
+\begin{figure}[H]
+	\begin{flushright}
+		\includegraphics[width=0.2\linewidth,angle=0,trim=0 0 0 -100,clip]{linux.jpeg}% Adjust the trim values to fine-tune the position
+	\end{flushright}
+\end{figure}
+	
+
+%---------------------------------------------------------------------------------------
+%	TITLE HEADLINE
+%----------------------------------------------------------------------------------------
+\vspace{-175pt}
+\begin{center}
+	 \small 出生日期：YYYY-MM-DD |
+	\small 年龄：Age |
+	 \small 性别：性别 |
+	 \small 籍贯：XXXX |
+	 \small 联系电话： Your Phone Number |
+	\small 邮箱：youremail@gmail.com
+\end{center}
+
+
+
+\vspace{1pt}
+
+
+%---------------------------------------------------------------------------------------
+%	META SECTION
+%----------------------------------------------------------------------------------------
+\metasection{}{\textbf{毕业院校：} 你的学校("211"工程，“双一流”一流学科建设高校)}
+\metasection{}{\textbf{专业：} 你的专业} 
+\metasection{}{\textbf{学位:} 你的学位}
+\metasection{}{\textbf{平均学分绩点:} 3.33/4.5 \hspace*{53pt} 算术平均分：85.56}{}
+\metasection{}{\textbf{专业课程及成绩:} 数据结构 ：85；  \hspace*{25pt}计算机网络基础：93； \hspace*{25pt}数据库系统：73；\\ \hspace*{58pt} JAVA项目实战：94； \hspace*{5pt}B/S应用系统开发：95； \hspace*{14pt}管理信息系统实践：92；}
+\metasection{}{\textbf{考研初试报名专业：}xx大学\hspace*{2pt}计算机学院\hspace*{2pt}085404\hspace*{2pt}计算机技术}
+\metasection{}{\textbf{考研初试成绩：}（101）政治：69； \hspace*{52pt}（201）英语（一）：73；\\ \hspace*{52pt}（301）数学（一）：104； \hspace*{27.5pt}（408）计算机专业基础综合：93；\\ \hspace*{58pt}总分：339}
+
+\vspace{-15pt}
+
+\textcolor{softcol}{\hrule}
+
+\cvsection{研究意愿}
+\vspace{-5pt}
+{结合本科阶段掌握的XXXXXX知识，我希望硕士研究生阶段能进行XXXXX方向的研究。此外，我也将始终保持学习新兴技术、探索前沿知识的热情，愿意积极尝试XXXX领域的研究。}
+
+%---------------------------------------------------------------------------------------
+%	SUMMARAY (optional)
+%----------------------------------------------------------------------------------------
+
+
+\vspace{-5pt}
+\textcolor{softcol}{\hrule}
+%============================================================================%
+%
+%	CV SECTIONS AND EVENTS (MAIN CONTENT)
+%
+%============================================================================%
+
+%---------------------------------------------------------------------------------------
+%	EXPERIENCE
+%----------------------------------------------------------------------------------------
+\cvsection{实践经历}
+\vspace{-5pt}
+\cvevent{YYYY.MM}{你的大学XXXX届本科优秀毕业论文(设计) XX等奖}{Yourl University}{
+	{论文题目：你的论文题目 \hspace*{238pt}指导教师：你的导师},
+	{内容简介：概括你的毕业设计主要内容。},
+	{公示网站：\textcolor{NJAUGREEN}{https://链接}}
+}
+
+%
+\cvevent{YYYY.MM-YYYY.MM}{XXXX公司}{ aistudio.baidu.com}{
+	{内容简介：使用XXXX数据集， 训练XXXX模型，对XXXX进行XXXX研究。\hspace*{40pt}项目导师：你的导师},
+	{参与工作：1.数据集预处理：使用Python语言批量压缩图像并调整bbox，生成VOC和coco格式数据集。\\ \hspace*{45pt}2. 编写项目文档：将数据预处理和配置训练参数的过程编写为notebook文档，以供后续活动参考。},
+	{文档链接：\textcolor{NJAUGREEN}{https://链接}}
+}
+\cvevent{YYYY.MM-YYYY.MM}{XXXX 实习}{Nanjing Agricultural University}{
+	{实习内容：实习期间主要做了什么。}
+}
+
+\vspace{-20pt}
+\textcolor{softcol}{\hrule}
+%---------------------------------------------------------------------------------------
+%	CERTIFICATION SECTION
+%--------------------------------------------------------------------------------------
+\cvsection{技能特长}
+\vspace{-5pt}
+\cvevent{}{技能证书}{Skill Certifications}{
+	{全国计算机技术与软件专业技术资格（水平）考试（软考）\hspace*{2pt}中级：软件设计师；\hspace*{2pt}初级：程序员},
+	{全国计算机等级考试（NCRE）\hspace*{2pt}三级： 数据库技术 \hspace*{2pt}等级：良好},
+	{全国大学英语六级考试（CET-6） },
+	{普通话水平测试\hspace*{2pt}：一级乙等}
+}
+\cvevent{}{特长爱好}{Strengths and Hobbies}{
+	{特长：熟悉Python自然语言处理、Window Subsystem for Linux、Docker、Git的基本操作；\\\hspace*{5pt}了解基于Vue 3、 Tomcat、 Servelt、MyBatis框架的Java Web系统开发；了解MySQL，Redis数据库基本操作；\\\hspace*{5pt}了解c++基本语法，熟练阅读各种英文文档，具有日常英语交流能力。},
+	{爱好：Proxmox VE虚拟机，爬山，跑步。}
+}
+
+\vspace{-20pt}
+\textcolor{softcol}{\hrule}
+\cvsection{自我评价}
+\vspace{-5pt}
+	{具有较强的自学能力，乐于接触和尝试多种计算机技术。敢于钻研，善于思考，遇到困难调动一切积极因素解决问题。}
+	{\\ 具有较强的团队合作精神，性格沉稳，善于沟通，能够与团队成员和谐相处。}
+		
+
+%--------------------------------------------------------------------------------------------------
+%	ARTIFICIAL FOOTER (fancy footer cannot exceed linewidth) 
+%--------------------------------------------------------------------------------------------------
+
+\null
+\vspace*{\fill}
+\hspace{-0.25\linewidth}\colorbox{white}{\makebox[1.5\linewidth][c]{\mystrut  \textnormal{ {Personal Page: } \textcolor{NJAUGREEN}{https://seydlitz2185.github.io} $\cdot$ {LaTeX Template: } \textcolor{NJAUGREEN}{https://github.com/jankapunkt/latexcv}}}}
+
+
+
+
+%============================================================================%
+%
+%
+%
+%	DOCUMENT END
+%
+%
+%
+%============================================================================%
+\end{document}
